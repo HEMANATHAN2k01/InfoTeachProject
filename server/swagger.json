@@ -1,0 +1,127 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "InfoTech Pro to Swagger",
+    "description": "My User Project Application API"
+  },
+  "host": "localhost:8000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Bio-data",
+      "description": "API for users in the system"
+    }
+  ],
+  "schemes": ["http"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/profile": {
+      "get": {
+        "tags": ["Get profile data"],
+        "summary": "Get user data in the system",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/std_data"
+            },
+            "headers": {
+              "Authorization": {
+                "type": "string",
+                "description": "JWT Authorization token",
+                "default": "Bearer <token>"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/register": {
+      "post": {
+        "tags": ["New User"],
+        "summary": "Create a new user in the system",
+        "description": "Create new user in the system",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "User that we want to create",
+            "schema": {
+              "$ref": "#/definitions/Bio-data"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "New user is created",
+            "schema": {
+              "$ref": "#/definitions/Bio-data"
+            }
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "tags": ["Login User"],
+        "summary": "User login in the system",
+        "description": "User login in the system",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "User that we want to login",
+            "schema": {
+              "$ref": "#/definitions/Bio-data"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User is logged in",
+            "schema": {
+              "$ref": "#/definitions/Bio-data"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Bio-data": {
+      "type": "object",
+      "required": ["name", "email", "password"],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "std_data": {
+      "type": "object",
+      "required": ["dept", "mobileno", "dob", "address"],
+      "properties": {
+        "dept": {
+          "type": "string"
+        },
+        "mobileno": {
+          "type": "string"
+        },
+        "dob": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
