@@ -5,7 +5,6 @@ const nodemailer = require("nodemailer");
 const uuid_user = require("../Utils/uuid_data");
 const uuid_data = require("../Utils/uuid_data");
 
-
 exports.register = (req, res) => {
   const insertQuery = `INSERT INTO studtentsdata_dbs.user (uuid,name,email,password,role) VALUES ('${uuid_user()}','${
     req.body.name
@@ -50,8 +49,6 @@ exports.login = (req, res) => {
     }
   });
 };
-
-
 
 exports.getdata = (req, res) => {
   const selectQuery = `SELECT name,uuid FROM studtentsdata_dbs.user WHERE role != 'admin'`;
